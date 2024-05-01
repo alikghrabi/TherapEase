@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: AppRoute.login,
       getPages: AppPage.pages,
-      home: Login(),
+      home: const Login(),
     );
   }
 }

@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:therapease/Controllers/LoginController.dart';
 
+import '../Routes/AppRoute.dart';
+
 
 class Login extends GetView<LoginController> {
+  const Login({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.only(
+        padding: const EdgeInsets.only(
           top: 10,
           left: 10,
           right: 10,
@@ -17,7 +21,7 @@ class Login extends GetView<LoginController> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
@@ -32,15 +36,15 @@ class Login extends GetView<LoginController> {
 
               ),
 
-              SizedBox(height: 10),
-              Text("Email"),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
+              const Text("Email"),
+              const SizedBox(height: 10),
               TextField(
                 controller: controller.email,
               ),
-              SizedBox(height: 10),
-              Text("Password"),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
+              const Text("Password"),
+              const SizedBox(height: 10),
               TextField(
                 controller: controller.password,
                 obscureText: true,
@@ -53,7 +57,13 @@ class Login extends GetView<LoginController> {
                         print("clicked");
                         print("email");
                         print(controller.email.text);
-                      } , child: Text("Login")
+                        controller.login();
+                      } , child: const Text("Login")
+                  ),
+                  ElevatedButton(
+                      onPressed: (){
+                        Get.toNamed(AppRoute.register);
+                      } , child: const Text("Register")
                   )
                 ],
               ),
