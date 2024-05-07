@@ -12,13 +12,13 @@ class Home extends GetView<HomeController> {
     return Scaffold(
       appBar: AppBar(
         title: Text("home"),
-        backgroundColor: Colors.purple,
+        backgroundColor: Colors.redAccent,
       ),
       body: Column(
         children: [],
       ),
       drawer: Drawer(
-        backgroundColor: Colors.purple,
+        backgroundColor: Colors.redAccent,
         child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
