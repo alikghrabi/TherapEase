@@ -1,51 +1,69 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:therapease/Controllers/HomeController.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:therapease/Controllers/SearchingController.dart';
 import '../Routes/AppRoute.dart';
 
-class Home extends GetView<HomeController> {
-  const Home({Key? key});
+
+
+
+
+class Search extends GetView<SearchingController> {
+  const Search({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Therapease",
-          style: TextStyle(color: Colors.white), // Set title color to white
+          "Search",
+          style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.redAccent,
         iconTheme: IconThemeData(color: Colors.white),
         actions: [
           IconButton(
             icon: Icon(Icons.notifications),
-            color: Colors.white, // Set icon color to white
+            color: Colors.white,
             onPressed: () {
               Get.toNamed(AppRoute.notification);
             },
           ),
         ],
       ),
-
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Welcome to Therapease",
-              style: TextStyle(fontSize: 20),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.9,
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: 'Search',
+                  prefixIcon: Icon(Icons.search),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              ),
             ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Add functionality here
-              },
-              child: Text("Button"),
+          ),
+          Expanded(
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Add your content here
+                ],
+              ),
             ),
-            // Add more fields or widgets as needed
-          ],
-        ),
+          ),
+        ],
       ),
+
 
       drawer: Drawer(
         child: ListView(
@@ -66,7 +84,7 @@ class Home extends GetView<HomeController> {
               title: Text("Home"),
               onTap: () {
                 // Navigate to the Home screen
-                Get.toNamed('/home');
+                Get.toNamed(AppRoute.home);
               },
             ),
             ListTile(
@@ -89,7 +107,6 @@ class Home extends GetView<HomeController> {
               leading: Icon(Icons.account_circle),
               title: Text("Profile"),
               onTap: () {
-                // Navigate to the Profile screen
                 Get.toNamed(AppRoute.profile);
               },
             ),
@@ -98,7 +115,7 @@ class Home extends GetView<HomeController> {
               leading: Icon(Icons.logout),
               title: Text("Logout"),
               onTap: () {
-                controller.logout();
+                // controller.logout();
               },
             ),
           ],
@@ -108,7 +125,7 @@ class Home extends GetView<HomeController> {
         backgroundColor: Colors.redAccent,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.white54,
-        currentIndex: 0, // Change this according to the selected tab
+        currentIndex: 1, // Change this according to the selected tab
         onTap: (index) {
           switch (index) {
             case 0:

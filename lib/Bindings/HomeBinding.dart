@@ -4,6 +4,6 @@ import 'package:therapease/Controllers/HomeController.dart';
 class HomeBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut(() => HomeController());
+    Get.lazyPut<HomeController>(() => HomeController());
   }
 }

@@ -1,56 +1,96 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:therapease/Controllers/HomeController.dart';
+import 'package:line_icons/line_icons.dart';
 import '../Routes/AppRoute.dart';
+import '../Controllers/ProfileController.dart';
+import 'package:therapease/Views/widget/profile_card.dart';
+import 'package:therapease/Views/widget/base_app_bar.dart';
 
-class Home extends GetView<HomeController> {
-  const Home({Key? key});
+class Profile extends GetView<ProfileController> {
+  const Profile({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
-          "Therapease",
-          style: TextStyle(color: Colors.white), // Set title color to white
+          "Profile",
+          style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.redAccent,
         iconTheme: IconThemeData(color: Colors.white),
         actions: [
           IconButton(
             icon: Icon(Icons.notifications),
-            color: Colors.white, // Set icon color to white
+            color: Colors.white,
             onPressed: () {
               Get.toNamed(AppRoute.notification);
             },
           ),
         ],
       ),
-
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Welcome to Therapease",
-              style: TextStyle(fontSize: 20),
+      body: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 40),
+                Center(
+                  child: Text(
+                    "Your Account Info",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                Center(
+                  child: Text(
+                    "Full Name: John Doe\nEmail: john.doe@example.com\nPhone Number: +1234567890",
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
+                SizedBox(height: 80),
+                ProfileCard(
+                  svgSrc: "../asset/images/profile.svg",
+                  title: "Profile Information",
+                  subTitle: "Change your account information",
+                  press: () {
+                    Get.offNamed(AppRoute.account);
+                  },
+                ),
+                ProfileCard(
+                  svgSrc: "../asset/images/lock.svg",
+                  title: "Change Password",
+                  subTitle: "Change your password",
+                  press: () {
+                    Get.offNamed(AppRoute.changePassword);
+                  },
+                ),
+                ProfileCard(
+                  svgSrc: "../asset/images/card.svg",
+                  title: "Payment Methods",
+                  subTitle: "Add your credit & debit cards",
+                  press: () {},
+                ),
+                ProfileCard(
+                  svgSrc: "./asset/images/fb.svg",
+                  title: "Add Social Account",
+                  subTitle: "Add Facebook, Twitter etc ",
+                  press: () {},
+                ),
+              ],
             ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Add functionality here
-              },
-              child: Text("Button"),
-            ),
-            // Add more fields or widgets as needed
-          ],
-        ),
+          ),
+        ],
       ),
-
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
-
           children: [
             DrawerHeader(
               decoration: BoxDecoration(
@@ -65,15 +105,13 @@ class Home extends GetView<HomeController> {
               leading: Icon(Icons.home),
               title: Text("Home"),
               onTap: () {
-                // Navigate to the Home screen
-                Get.toNamed('/home');
+                Get.toNamed(AppRoute.home);
               },
             ),
             ListTile(
               leading: Icon(Icons.search),
               title: Text("Search"),
               onTap: () {
-                // Navigate to the Search screen
                 Get.toNamed(AppRoute.search);
               },
             ),
@@ -81,7 +119,6 @@ class Home extends GetView<HomeController> {
               leading: Icon(Icons.notifications),
               title: Text("Notifications"),
               onTap: () {
-                // Navigate to the Search screen
                 Get.toNamed(AppRoute.notification);
               },
             ),
@@ -89,16 +126,15 @@ class Home extends GetView<HomeController> {
               leading: Icon(Icons.account_circle),
               title: Text("Profile"),
               onTap: () {
-                // Navigate to the Profile screen
                 Get.toNamed(AppRoute.profile);
               },
             ),
-            Divider(), // Add a divider
+            Divider(),
             ListTile(
               leading: Icon(Icons.logout),
               title: Text("Logout"),
               onTap: () {
-                controller.logout();
+                // controller.logout();
               },
             ),
           ],
@@ -108,7 +144,7 @@ class Home extends GetView<HomeController> {
         backgroundColor: Colors.redAccent,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.white54,
-        currentIndex: 0, // Change this according to the selected tab
+        currentIndex: 2,
         onTap: (index) {
           switch (index) {
             case 0:
@@ -139,7 +175,6 @@ class Home extends GetView<HomeController> {
           ),
         ],
       ),
-
     );
   }
 }
