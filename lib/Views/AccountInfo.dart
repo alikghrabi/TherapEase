@@ -44,6 +44,7 @@ class AccountInfo extends GetView<AccountController> {
                   maxLength: 30,
                   iconAtStart: true,
                   prefixIcon: Icon(LineIcons.user),
+                  controller: controller.name,
                 ),
                 const SizedBox(height: 20),
                 BaseLabel(text: 'Phone Number'),
@@ -52,12 +53,15 @@ class AccountInfo extends GetView<AccountController> {
                   labelText: '',
                   iconAtStart: true,
                   prefixIcon: Icon(LineIcons.lock),
+                  controller: controller.phoneNumber,
                 ),
                 const SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0),
                   child: BaseButton(
-                    onPressed: () => {},
+                    onPressed: () => {
+                      controller.changeCredentials()
+                    },
                     text: 'Save changes',
                     borderRadius: 2,
                   ),

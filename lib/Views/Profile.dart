@@ -50,7 +50,7 @@ class Profile extends GetView<ProfileController> {
                 SizedBox(height: 10),
                 Center(
                   child: Text(
-                    "Full Name: John Doe\nEmail: john.doe@example.com\nPhone Number: +1234567890",
+                    "Full Name: ${controller.user?.name ?? 'N/A'}\nEmail:${controller.user?.email ?? 'N/A'}\nPhone Number: ${controller.user?.phone ?? 'N/A'}",
                     style: TextStyle(fontSize: 16),
                   ),
                 ),

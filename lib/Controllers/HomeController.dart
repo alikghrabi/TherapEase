@@ -16,6 +16,13 @@ class HomeController extends GetxController {
     super.onInit();
 
     prefs = await SharedPreferences.getInstance();
+
+    if(prefs.getString('token') != null) {
+      Get.offNamed(AppRoute.home);
+    } else {
+      Get.offNamed(AppRoute.login);
+    }
+
   }
 
   void logout() {

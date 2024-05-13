@@ -11,11 +11,25 @@ import '../Routes/AppRoute.dart';
 
 class SearchingController extends GetxController {
 
+  late SharedPreferences prefs;
+
   @override
-  void onInit() async{
-    // TODO: implement onInit
+  void onInit() async {
     super.onInit();
 
+    prefs = await SharedPreferences.getInstance();
+
+    if(prefs.getString('token') != null) {
+      Get.offNamed(AppRoute.search);
+    } else {
+      Get.offNamed(AppRoute.login);
+    }
+
+  }
+
+  void logout() {
+    prefs.remove("token");
+    Get.offNamed(AppRoute.login);
   }
 
 }

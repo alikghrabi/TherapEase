@@ -5,7 +5,7 @@ class AppRoute {
   static const String profile = "/Profile";
   static const String search = "/Search";
   static const String changePassword = "/ChangePassword";
-  static const String account = "/AccountInfo";
+  static const String account = "/ChangeAccountInfo";
   static const String notification = "/Notification";
 
 

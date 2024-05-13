@@ -43,6 +43,7 @@ class ChangePassword extends GetView<ChangePasswordController> {
                   maxLength: 30,
                   iconAtStart: true,
                   prefixIcon: Icon(LineIcons.eye),
+                  controller: controller.currentPassword,
                 ),
                 const SizedBox(height: 20),
                 BaseLabel(text: 'New password'),
@@ -52,6 +53,8 @@ class ChangePassword extends GetView<ChangePasswordController> {
                   maxLength: 30,
                   iconAtStart: true,
                   prefixIcon: Icon(LineIcons.lock),
+                  controller: controller.newPassword,
+
                 ),
                 const SizedBox(height: 20),
                 BaseLabel(text: 'Confirm new password'),
@@ -65,8 +68,10 @@ class ChangePassword extends GetView<ChangePasswordController> {
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0),
                   child: BaseButton(
-                    onPressed: () => {},
-                    text: 'Save changes',
+                    onPressed: () => {
+                      controller.checkCurrentPassword()
+                    },
+                    text: 'Change Password',
                     borderRadius: 2,
                   ),
                 ),

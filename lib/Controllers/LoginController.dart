@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:therapease/Models/User.dart';
 import '../Core/Network/DioClient.dart';
+import '../Core/showSuccessDialog.dart';
 import '../Routes/AppRoute.dart';
 
 
@@ -22,6 +23,8 @@ class LoginController extends GetxController {
 
     if(prefs.getString('token') != null) {
       Get.offNamed(AppRoute.home);
+    } else {
+      Get.offNamed(AppRoute.login);
     }
   }
 
@@ -32,8 +35,11 @@ class LoginController extends GetxController {
     var post = await DioClient().getInstance().post("/login", data: request_body);
 
     if (post.statusCode == 200) {
-      prefs.setString("token", post.data['token']);
-      Get.offNamed(AppRoute.home);
+      showSuccessDialog(
+          Get.context!, "Login Success", "Welcome Back!", () {
+        prefs.setString('token', post.data['token']);
+        Get.offNamed(AppRoute.home);
+      });
     }
   }
 }
