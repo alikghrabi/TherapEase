@@ -7,6 +7,12 @@ class AppRoute {
   static const String changePassword = "/ChangePassword";
   static const String account = "/ChangeAccountInfo";
   static const String notification = "/Notification";
+  static const String sendVerificationCode = "/sendVerificationCode";
+  static const String enterVerificationCode = "/enterVerificationCode";
+  static const String changeForgottenPassword = "/changeForgottenPassword";
+
+
+
 
 
 

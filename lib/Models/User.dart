@@ -5,12 +5,15 @@ class User {
   final String? email;
   final String? password;
   final String? phone;
+  final String? verificationCode;
+
 
   User({
     this.name,
     this.email,
     this.phone,
-    this.password
+    this.password,
+    this.verificationCode
 });
 
   // Model to JSON
@@ -19,7 +22,8 @@ class User {
       'name':name,
       'email':email,
       'phone':phone,
-      'password':password
+      'password':password,
+      'verificationCode':verificationCode
     };
   }
   String toJson()=> json.encode(ToMap());
@@ -31,6 +35,8 @@ class User {
       email: json['email'] ?? '',
       phone: json['phoneNumber'] ?? '',
       password: json['password'] ?? '',
+      verificationCode: json['verificationCode'] ?? '',
+
     );
   }
 

@@ -9,8 +9,7 @@ import '../Core/showSuccessDialog.dart';
 import '../Models/User.dart';
 import '../Routes/AppRoute.dart';
 
-class ChangePasswordController extends GetxController {
-  TextEditingController currentPassword = TextEditingController();
+class ChangeForgottenPasswordController extends GetxController {
   TextEditingController newPassword = TextEditingController();
   TextEditingController retypePassword = TextEditingController();
 
@@ -24,19 +23,14 @@ class ChangePasswordController extends GetxController {
     prefs = await SharedPreferences.getInstance();
 
     if(prefs.getString('token') != null) {
-      Get.offNamed(AppRoute.changePassword);
+      Get.offNamed(AppRoute.changeForgottenPassword);
     } else {
-      Get.offNamed(AppRoute.login);
+      Get.offNamed(AppRoute.sendVerificationCode);
     }
   }
 
   bool checkFields() {
-    if (currentPassword.text.isEmpty) {
-      showSuccessDialog(
-          Get.context!, "Error", "Full Name is required", () {
-      });
-      return false;
-    } else if (newPassword.text.isEmpty) {
+      if (newPassword.text.isEmpty) {
       showSuccessDialog(
           Get.context!, "Error", "Phone Number is required", () {
       });
@@ -55,46 +49,32 @@ class ChangePasswordController extends GetxController {
     return true;
   }
 
-  void checkCurrentPassword() async {
+
+
+  void changePassword() async {
     if (checkFields()) {
       User user = User(password: newPassword.value.text);
       String requestbody = user.toJson();
       var post = await DioClient().getInstance().post(
-          "/checkPassword", data: requestbody);
+          "/changePassword", data: requestbody);
       if (post.statusCode == 200) {
-        changePassword();
-      } else{
+        showSuccessDialog(
+            Get.context!, "Success",
+            "Your password has been changed successfully!", () {
+          ();
+        });
+        Get.offNamed(AppRoute.login);
+      } else {
         showSuccessDialog(
             Get.context!, "Error",
-            "Your current password is incorrect!", () {});
+            "Error changing your password. Please try again", () {});
       }
-    } else {
-      return ;
     }
-    }
-
-    void changePassword() async {
-        checkCurrentPassword();
-        User user = User(password: newPassword.value.text);
-        String requestbody = user.toJson();
-        var post = await DioClient().getInstance().post(
-            "/changePassword", data: requestbody);
-        if (post.statusCode == 200) {
-          showSuccessDialog(
-              Get.context!, "Success",
-              "Your password has been changed successfully!", () {
-            ();
-          });
-        } else {
-          showSuccessDialog(
-              Get.context!, "Error",
-              "Error changing your password. Please try again", () {});
-        }
-    }
+  }
 
 
 
-  void logout() {
+  void goBack() {
     prefs.remove("token");
     Get.offNamed(AppRoute.login);
   }
