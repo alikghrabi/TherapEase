@@ -57,7 +57,7 @@ class ChangePasswordController extends GetxController {
 
   void checkCurrentPassword() async {
     if (checkFields()) {
-      User user = User(password: newPassword.value.text);
+      User user = User(password: currentPassword.value.text);
       String requestbody = user.toJson();
       var post = await DioClient().getInstance().post(
           "/checkPassword", data: requestbody);

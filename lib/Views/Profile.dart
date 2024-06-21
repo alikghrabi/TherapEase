@@ -49,11 +49,15 @@ class Profile extends GetView<ProfileController> {
                 ),
                 SizedBox(height: 10),
                 Center(
-                  child: Text(
-                    "Full Name: ${controller.user?.name ?? 'N/A'}\nEmail:${controller.user?.email ?? 'N/A'}\nPhone Number: ${controller.user?.phone ?? 'N/A'}",
+                  child: controller.user != null
+                      ? Text(
+                    "Full Name: ${controller.user!.name ?? 'N/A'}\nEmail: ${controller.user!.email ?? 'N/A'}\nPhone Number: ${controller.user!.phone ?? 'N/A'}",
                     style: TextStyle(fontSize: 16),
-                  ),
+                  )
+                      : CircularProgressIndicator(), // Example of showing loading indicator
                 ),
+
+
                 SizedBox(height: 80),
                 ProfileCard(
                   svgSrc: "../asset/images/profile.svg",

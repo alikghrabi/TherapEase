@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart'; // Ensure you have flutter_svg package in your pubspec.yaml
 import 'package:get/get.dart';
-import 'package:therapease/Controllers/LoginController.dart';
+import '../Controllers/TherapistLoginController.dart';
 import '../Routes/AppRoute.dart';
 
-class Login extends GetView<LoginController> {
-  const Login({super.key});
+class TherapistLogin extends GetView<TherapistLoginController> {
+  const TherapistLogin({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +14,9 @@ class Login extends GetView<LoginController> {
       appBar: AppBar(
         backgroundColor: Color(0xFFFF725E), // AppBar color using a hexadecimal code
         title: Text(
-            "TherapEase",
-            style: TextStyle(color: Colors.white), // Setting the text color to white
-      ), // AppBar title
+          "TherapEase",
+          style: TextStyle(color: Colors.white), // Setting the text color to white
+        ), // AppBar title
         centerTitle: true,
         automaticallyImplyLeading: false,
       ),
@@ -88,8 +88,6 @@ class Login extends GetView<LoginController> {
                       // Login Button
                       ElevatedButton(
                           onPressed: () {
-                            print("Login clicked");
-                            print("email: ${controller.email.text}");
                             controller.login();
                           },
                           style: ElevatedButton.styleFrom(
@@ -102,10 +100,10 @@ class Login extends GetView<LoginController> {
                       // Sign up Link
                       InkWell(
                         onTap: () {
-                          Get.toNamed(AppRoute.register);
+                          Get.toNamed(AppRoute.therapistRegister);
                         },
                         child: Text(
-                          "New here? Sign up",
+                          "New? Apply Here",
                           style: TextStyle(
                             color: Colors.redAccent,
                             fontWeight: FontWeight.bold,
@@ -128,10 +126,10 @@ class Login extends GetView<LoginController> {
                       ),
                       InkWell(
                         onTap: () {
-                          Get.toNamed(AppRoute.sendVerificationCode);
+                          Get.toNamed(AppRoute.login);
                         },
                         child: Text(
-                            "Therapist? Click Here",
+                          "User? Click Here",
                           style: TextStyle(
                             color: Colors.redAccent,
                             fontWeight: FontWeight.bold,

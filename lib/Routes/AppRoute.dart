@@ -10,6 +10,8 @@ class AppRoute {
   static const String sendVerificationCode = "/sendVerificationCode";
   static const String enterVerificationCode = "/enterVerificationCode";
   static const String changeForgottenPassword = "/changeForgottenPassword";
+  static const String therapistLogin = "/therapistLogin";
+  static const String therapistRegister = "/therapistRegister";
 
 
 

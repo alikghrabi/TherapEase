@@ -15,6 +15,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
     late SharedPreferences prefs;
 
+    final formKey = GlobalKey<FormState>(); // Define GlobalKey for the form
+
+
+
     @override
     void onInit() async {
       // TODO: implement onInit
@@ -22,6 +26,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
       prefs = await SharedPreferences.getInstance();
     }
+
 
     bool checkFields() {
       if (name.text.isEmpty) {
@@ -38,14 +43,37 @@ import 'package:shared_preferences/shared_preferences.dart';
         showSuccessDialog(
             Get.context!, "Error", "Email is required", () {
         });
-        return false;        
+        return false;
       } else if (password.text.isEmpty) {
         showSuccessDialog(
             Get.context!, "Error", "Password is required", () {
         });
         return false;
+      } else if (!isValidEmail(email.text)) {
+      showSuccessDialog(
+            Get.context!, "Error", "Enter a valid email address", () {
+      });
+      return false;
+      } else if (!isValidPassword(password.text)) {
+        showSuccessDialog(
+            Get.context!, "Error", "Password must be at least 6 characters long", () {
+        });
+        return false;
       }
       return true;
+    }
+
+    bool isValidEmail(String email) {
+      // Basic email validation using RegExp
+      String emailPattern =
+          r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'; // Change pattern as per your requirements
+      RegExp regex = RegExp(emailPattern);
+      return regex.hasMatch(email);
+    }
+
+    bool isValidPassword (String password) {
+      // Password validation: Check if password is at least 6 characters long
+      return password.length >= 6;
     }
 
     void register() async {
