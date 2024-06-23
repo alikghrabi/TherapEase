@@ -13,23 +13,23 @@ class ProfileController extends GetxController {
     super.onInit();
     prefs = await SharedPreferences.getInstance();
 
-    String? token = prefs.getString('token');
-    int? userId = prefs.getInt('user_id');
-
-    if (token != null && userId != null) {
-      await fetchUserInfo(userId.toString()); // Convert userId to string if necessary
+    if (prefs.getString('token') != null && prefs.getString('user_id') != null) {
+      await fetchUserInfo(prefs.getString('user_id'));
     } else {
-      Get.offNamed(AppRoute.login);
+      // Redirect to login only if the user is not authenticated
+        Get.offNamed(AppRoute.login);
+
     }
   }
+
 
   void logout() {
     prefs.remove("token");
     prefs.remove("user_id");
-    Get.offAllNamed(AppRoute.login);
+    Get.offAllNamed(AppRoute.login); // Use Get.offAllNamed to clear navigation stack
   }
 
-  Future<void> fetchUserInfo(String id) async {
+  Future<void> fetchUserInfo(String? id) async {
     try {
       var response = await DioClient().getInstance().get("/user/$id");
 

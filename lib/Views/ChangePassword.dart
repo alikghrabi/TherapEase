@@ -63,13 +63,15 @@ class ChangePassword extends GetView<ChangePasswordController> {
                   labelText: '',
                   iconAtStart: true,
                   prefixIcon: Icon(LineIcons.lock),
+                  controller: controller.retypePassword,
+
                 ),
                 const SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0),
                   child: BaseButton(
                     onPressed: () => {
-                      controller.checkCurrentPassword()
+                      controller.changePassword()
                     },
                     text: 'Change Password',
                     borderRadius: 2,

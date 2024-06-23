@@ -60,7 +60,7 @@ class Profile extends GetView<ProfileController> {
 
                 SizedBox(height: 80),
                 ProfileCard(
-                  svgSrc: "../asset/images/profile.svg",
+                  svgSrc: "card.svg",
                   title: "Profile Information",
                   subTitle: "Change your account information",
                   press: () {
@@ -68,7 +68,7 @@ class Profile extends GetView<ProfileController> {
                   },
                 ),
                 ProfileCard(
-                  svgSrc: "../asset/images/lock.svg",
+                  svgSrc: "card.svg",
                   title: "Change Password",
                   subTitle: "Change your password",
                   press: () {
@@ -76,13 +76,13 @@ class Profile extends GetView<ProfileController> {
                   },
                 ),
                 ProfileCard(
-                  svgSrc: "../asset/images/card.svg",
+                   svgSrc: "card.svg",
                   title: "Payment Methods",
                   subTitle: "Add your credit & debit cards",
                   press: () {},
                 ),
                 ProfileCard(
-                  svgSrc: "./asset/images/fb.svg",
+                  svgSrc: "card.svg",
                   title: "Add Social Account",
                   subTitle: "Add Facebook, Twitter etc ",
                   press: () {},

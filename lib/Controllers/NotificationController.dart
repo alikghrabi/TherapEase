@@ -26,7 +26,8 @@ class NotificationController extends GetxController {
 
   void logout() {
     prefs.remove("token");
-    Get.offNamed(AppRoute.login);
+    prefs.remove("user_id");
+    Get.offAllNamed(AppRoute.login);
   }
 
 }

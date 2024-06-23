@@ -26,7 +26,7 @@ class TherapistLogin extends GetView<TherapistLoginController> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SvgPicture.asset(
-                'lib/asset/images/Psychologist-pana.svg', // Ensure the path is correct
+                'assets/Psychologist-cuate.svg', // Ensure the path is correct
                 height: 300, // Set an appropriate size for the image
               ),
               const SizedBox(height: 20),

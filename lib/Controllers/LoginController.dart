@@ -45,8 +45,14 @@ class LoginController extends GetxController {
           Get.offNamed(AppRoute.home);
         },
       );
-    } else {
-      print('Login failed');
+    }else {
+      showSuccessDialog(
+        Get.context!,
+        "Invalid",
+        "Invalid email or password",
+            () {
+        },
+      );
     }
   }
 }

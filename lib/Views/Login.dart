@@ -26,7 +26,7 @@ class Login extends GetView<LoginController> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SvgPicture.asset(
-                'lib/asset/images/Psychologist-pana.svg', // Ensure the path is correct
+                'assets/Psychologist-pana.svg', // Ensure the path is correct
                 height: 300, // Set an appropriate size for the image
               ),
               const SizedBox(height: 20),
@@ -115,7 +115,7 @@ class Login extends GetView<LoginController> {
                       ),
                       InkWell(
                         onTap: () {
-                          Get.toNamed(AppRoute.sendVerificationCode);
+                            Get.toNamed(AppRoute.sendVerificationCode);
                         },
                         child: Text(
                           "Forgot Password? Click Here",
@@ -128,7 +128,7 @@ class Login extends GetView<LoginController> {
                       ),
                       InkWell(
                         onTap: () {
-                          Get.toNamed(AppRoute.sendVerificationCode);
+                          Get.toNamed(AppRoute.therapistLogin);
                         },
                         child: Text(
                             "Therapist? Click Here",

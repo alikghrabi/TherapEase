@@ -25,7 +25,7 @@ class TherapistLoginController extends GetxController {
     if(prefs.getString('token') != null) {
       Get.offNamed(AppRoute.home);
     } else {
-      Get.offNamed(AppRoute.login);
+      Get.offNamed(AppRoute.therapistLogin);
     }
   }
 

@@ -35,33 +35,51 @@
     }
 
     bool checkFields() {
-      if (name.text.isEmpty) {
+      if (name.text.isEmpty && phoneNumber.text.isEmpty) {
         showSuccessDialog(
-            Get.context!, "Error", "Full Name is required!", () {
-        });
-        return false;
-      } else if (phoneNumber.text.isEmpty) {
-        showSuccessDialog(
-            Get.context!, "Error", "Phone Number is required! ", () {
+            Get.context!, "Error", "Full Name or Phone number is required!", () {
         });
         return false;
       }
       return true;
     }
 
-    void changeCredentials () async {
+    void changeCredentials() async {
       if (checkFields()) {
-        User user = User(name: name.value.text, phone: phoneNumber.value.text);
-        String requestBody = user.toJson();
+        int? userId = prefs.getInt('user_id');
+        if (userId != null) {
+          User user = User(name: name.value.text, phone: phoneNumber.value.text);
+          String requestBody = user.toJson();
 
-        var post = await DioClient().getInstance().post(
-            "/changeAccountInfo", data: requestBody);
+          try {
+            var response = await DioClient().getInstance().put(
+              "/changeAccountInfo/$userId",
+              data: requestBody,
+            );
 
-        if (post.statusCode == 200) {
-          showSuccessDialog(
-              Get.context!, "Success", "Account Information updated successfully", () {
-          });
+            if (response.statusCode == 200) {
+              showSuccessDialog(
+                Get.context!,
+                "Success",
+                "Account Information updated successfully",
+                    () {},
+              );
+            } else {
+              // Handle response errors here
+              print('Failed to update account information: ${response.statusCode}');
+            }
+          } catch (e) {
+            // Handle network or other errors here
+            print('Error updating account information: $e');
+          }
+        } else {
+          // Handle case where userId is null
+          print('User ID is null');
         }
+      } else {
+        // Handle case where fields validation fails
+        print('Fields validation failed');
       }
     }
+
     }

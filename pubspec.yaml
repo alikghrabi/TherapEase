@@ -64,11 +64,14 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-     - lib/asset/images/Psychologist-pana.svg
-     - lib/asset/images/card.svg
-     - lib/asset/images/profile.svg
-     - lib/asset/images/lock.svg
-     - lib/asset/images/fb.svg
+    - assets/afb.svg
+    - assets/card.svg
+    - assets/lock.svg
+    - assets/profile.svg
+    - assets/Psychologist-pana.svg
+    - assets/Psychologist-cuate.svg
+
+
 
   #   - images/a_dot_ham.jpeg
 
