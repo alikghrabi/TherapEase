@@ -60,7 +60,7 @@ class Profile extends GetView<ProfileController> {
 
                 SizedBox(height: 80),
                 ProfileCard(
-                  svgSrc: "card.svg",
+                  svgSrc: "profile.svg",
                   title: "Profile Information",
                   subTitle: "Change your account information",
                   press: () {
@@ -68,7 +68,7 @@ class Profile extends GetView<ProfileController> {
                   },
                 ),
                 ProfileCard(
-                  svgSrc: "card.svg",
+                  svgSrc: "lock.svg",
                   title: "Change Password",
                   subTitle: "Change your password",
                   press: () {
@@ -82,7 +82,7 @@ class Profile extends GetView<ProfileController> {
                   press: () {},
                 ),
                 ProfileCard(
-                  svgSrc: "card.svg",
+                  svgSrc: "afb.svg",
                   title: "Add Social Account",
                   subTitle: "Add Facebook, Twitter etc ",
                   press: () {},

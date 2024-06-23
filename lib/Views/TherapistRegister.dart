@@ -145,8 +145,7 @@ class TherapistRegister extends GetView<TherapistRegisterController> {
                       const SizedBox(height: 20),
 
                       TextFormField(
-                        controller: controller.password,
-                        obscureText: true,
+                        controller: controller.experience,
                         decoration: InputDecoration(
                           labelText: "Experience",
                           hintText: "How many number of experience do you have?",
@@ -169,8 +168,7 @@ class TherapistRegister extends GetView<TherapistRegisterController> {
                       ),
                       const SizedBox(height: 20),
                       TextFormField(
-                        controller: controller.password,
-                        obscureText: true,
+                        controller: controller.description,
                         decoration: InputDecoration(
                           labelText: "Description ",
                           hintText: "Provide a brief description (if needed)",

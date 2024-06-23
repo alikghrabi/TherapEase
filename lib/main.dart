@@ -3,13 +3,15 @@ import 'package:get/get.dart';
 import 'package:therapease/Routes/AppPage.dart';
 import 'package:therapease/Routes/AppRoute.dart';
 import 'package:therapease/Views/Login.dart';
+import 'package:therapease/Controllers/LoginController.dart';
+import 'package:therapease/Bindings/LoginBinding.dart'; // Import LoginBinding
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,4 +27,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

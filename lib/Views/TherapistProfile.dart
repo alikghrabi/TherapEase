@@ -1,19 +1,22 @@
-// search.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../Controllers/SearchingController.dart';
-import '../Models/Therapist.dart';
+import 'package:line_icons/line_icons.dart';
+import '../Controllers/TherapistProfileController.dart';
 import '../Routes/AppRoute.dart';
+import '../Controllers/ProfileController.dart';
+import 'package:therapease/Views/widget/profile_card.dart';
+import 'package:therapease/Views/widget/base_app_bar.dart';
 
-class Search extends GetView<SearchingController> {
-  const Search({Key? key}) : super(key: key);
+class TherapistProfile extends GetView<TherapistProfileController> {
+  const TherapistProfile({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
-          "Search",
+          "Profile",
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.redAccent,
@@ -28,55 +31,52 @@ class Search extends GetView<SearchingController> {
           ),
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: ListView(
         children: [
           Padding(
             padding: const EdgeInsets.all(20),
-            child: Container(
-              width: MediaQuery.of(context).size.width * 0.9,
-              child: TextField(
-                onChanged: (value) {
-                  controller.searchQuery.value = value.trim();
-                },
-                decoration: InputDecoration(
-                  hintText: 'Search',
-                  prefixIcon: Icon(Icons.search),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 40),
+                Center(
+                  child: Text(
+                    "Your Account Info",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-              ),
-            ),
-          ),
-          Expanded(
-            child: Obx(() {
-              if (controller.therapists.isEmpty) {
-                return Center(child: CircularProgressIndicator());
-              } else if (controller.filteredTherapists.isEmpty) {
-                return Center(child: Text('No results found.'));
-              } else {
-                return ListView.builder(
-                  itemCount: controller.filteredTherapists.length,
-                  itemBuilder: (context, index) {
-                    final Therapist therapist = controller.filteredTherapists[index];
-                    return ListTile(
-                      title: Text(therapist.name!),
-                      subtitle: Text(therapist.email!),
-                      onTap: () {
-                        // Handle item tap
-                      },
-                    );
+                SizedBox(height: 10),
+                Center(
+                  child: controller.therapist != null
+                      ? Text(
+                    "Full Name: ${controller.therapist!.name ?? 'N/A'}\nEmail: ${controller.therapist!.email ?? 'N/A'}\nPhone Number: ${controller.therapist!.phone ?? 'N/A'}",
+                    style: TextStyle(fontSize: 16),
+                  )
+                      : CircularProgressIndicator(), // Example of showing loading indicator
+                ),
+
+
+                SizedBox(height: 80),
+                ProfileCard(
+                  svgSrc: "settings.svg",
+                  title: "Settings",
+                  subTitle: "Change profile information",
+                  press: () {
+                    AppRoute.therapistSettings;
                   },
-                );
-              }
-            }),
+                ),
+              ],
+            ),
           ),
         ],
       ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
+
           children: [
             DrawerHeader(
               decoration: BoxDecoration(
@@ -88,16 +88,16 @@ class Search extends GetView<SearchingController> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.home),
-              title: Text("Home"),
+              leading: Icon(Icons.book_sharp),
+              title: Text("Bookings"),
               onTap: () {
                 // Navigate to the Home screen
-                Get.toNamed(AppRoute.home);
+                Get.toNamed('/therapistHome');
               },
             ),
             ListTile(
-              leading: Icon(Icons.search),
-              title: Text("Search"),
+              leading: Icon(Icons.assignment),
+              title: Text("Requests"),
               onTap: () {
                 // Navigate to the Search screen
                 Get.toNamed(AppRoute.search);
@@ -107,14 +107,15 @@ class Search extends GetView<SearchingController> {
               leading: Icon(Icons.notifications),
               title: Text("Notifications"),
               onTap: () {
-                // Navigate to the Notifications screen
-                Get.toNamed(AppRoute.notification);
+                // Navigate to the Search screen
+                Get.toNamed(AppRoute.therapistNotification);
               },
             ),
             ListTile(
               leading: Icon(Icons.account_circle),
               title: Text("Profile"),
               onTap: () {
+                // Navigate to the Profile screen
                 Get.toNamed(AppRoute.profile);
               },
             ),
@@ -133,14 +134,14 @@ class Search extends GetView<SearchingController> {
         backgroundColor: Colors.redAccent,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.white54,
-        currentIndex: 1, // Change this according to the selected tab
+        currentIndex: 0, // Change this according to the selected tab
         onTap: (index) {
           switch (index) {
             case 0:
-              Get.toNamed(AppRoute.home);
+              Get.toNamed(AppRoute.therapistHome);
               break;
             case 1:
-              Get.toNamed(AppRoute.search);
+            // Get.toNamed(AppRoute.search);
               break;
             case 2:
               Get.toNamed(AppRoute.profile);
@@ -151,12 +152,12 @@ class Search extends GetView<SearchingController> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
+            icon: Icon(Icons.book_sharp),
+            label: "Bookings",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: "Search",
+            icon: Icon(Icons.assignment),
+            label: "Requests",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle),

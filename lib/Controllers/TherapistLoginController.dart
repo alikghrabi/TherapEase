@@ -23,7 +23,7 @@ class TherapistLoginController extends GetxController {
     prefs = await SharedPreferences.getInstance();
 
     if(prefs.getString('token') != null) {
-      Get.offNamed(AppRoute.home);
+      Get.offNamed(AppRoute.therapistHome);
     } else {
       Get.offNamed(AppRoute.therapistLogin);
     }
@@ -36,11 +36,24 @@ class TherapistLoginController extends GetxController {
     var post = await DioClient().getInstance().post("/loginTherapist", data: request_body);
 
     if (post.statusCode == 200) {
+      String token = post.data['token'];
+      int therapistId = post.data['therapist']['id'];
+
+      await prefs.setString('token', token);
+      await prefs.setInt('user_id', therapistId);
+
       showSuccessDialog(
           Get.context!, "Login Success", "Welcome Back!", () {
-        prefs.setString('token', post.data['token']);
-        Get.offNamed(AppRoute.home);
+        Get.offNamed(AppRoute.therapistHome);
       });
+    } else {
+      showSuccessDialog(
+        Get.context!,
+        "Invalid",
+        "Invalid email or password",
+            () {
+        },
+      );
     }
   }
 }

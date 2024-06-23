@@ -26,10 +26,20 @@ import 'package:therapease/Views/ChangePassword.dart';
 import 'package:therapease/Views/AccountInfo.dart';
 import 'package:therapease/Views/Notification.dart';
 
+import '../Bindings/TherapistHomeBinding.dart';
 import '../Bindings/TherapistLoginBinding.dart';
+import '../Bindings/TherapistNotificationBinding.dart';
+import '../Bindings/TherapistProfileBinding.dart';
 import '../Bindings/TherapistRegisterBinding.dart';
+import '../Bindings/TherapistRequestBinding.dart';
+import '../Bindings/TherapistSettingsBinding.dart';
+import '../Views/TherapistHome.dart';
 import '../Views/TherapistLogin.dart';
+import '../Views/TherapistNotification.dart';
+import '../Views/TherapistProfile.dart';
 import '../Views/TherapistRegister.dart';
+import '../Views/TherapistRequest.dart';
+import '../Views/TherapistSettings.dart';
 
 
 
@@ -51,6 +61,14 @@ class AppPage {
     GetPage(name: AppRoute.notification, page: ()=>const Notification(), binding: NotificationBinding()),
     GetPage(name: AppRoute.therapistLogin, page: ()=>const TherapistLogin(), binding: TherapistLoginBinding()),
     GetPage(name: AppRoute.therapistRegister, page: ()=>const TherapistRegister(), binding: TherapistRegisterBinding()),
+    GetPage(name: AppRoute.therapistHome, page: ()=>const TherapistHome(), binding: TherapistHomeBinding()),
+    GetPage(name: AppRoute.therapistNotification, page: ()=>const TherapistNotification(), binding: TherapistNotificationBinding()),
+    GetPage(name: AppRoute.therapistRequest, page: ()=>const TherapistRequest(), binding: TherapistRequestBinding()),
+    GetPage(name: AppRoute.therapistProfile, page: ()=>const TherapistProfile(), binding: TherapistProfileBinding()),
+    GetPage(name: AppRoute.therapistSettings, page: ()=>const TherapistSettings(), binding: TherapistSettingsBinding()),
+
+
+
 
 
 

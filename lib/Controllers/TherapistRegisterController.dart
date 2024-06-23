@@ -107,7 +107,7 @@ class TherapistRegisterController extends GetxController {
           email: email.value.text,
           phone: phone.value.text,
           password: password.value.text,
-          experience: experience.value.text,
+          experience: int.tryParse(experience.value.text),
           descriptionRegistration: description.value.text,
           nationalIdPicFrontSide: image1.value?.path,
           nationalIdPicBackSide: image2.value?.path);

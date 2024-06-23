@@ -28,8 +28,8 @@ class ProfileCard extends StatelessWidget {
             children: [
               SvgPicture.asset(
                 svgSrc!,
-                height: 24,
-                width: 24,
+                height: 17,
+                width: 17,
                 // opacity: 0.7,
               ),
               const SizedBox(width: 8),
