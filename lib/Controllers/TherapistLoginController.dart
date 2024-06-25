@@ -7,8 +7,6 @@ import '../Core/showSuccessDialog.dart';
 import '../Models/Therapist.dart';
 import '../Routes/AppRoute.dart';
 
-
-
 class TherapistLoginController extends GetxController {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
@@ -16,44 +14,58 @@ class TherapistLoginController extends GetxController {
   late SharedPreferences prefs;
 
   @override
-  void onInit() async{
-    // TODO: implement onInit
+  void onInit() {
     super.onInit();
+    initializePreferences();
+  }
 
+  void initializePreferences() async {
     prefs = await SharedPreferences.getInstance();
 
-    if(prefs.getString('token') != null) {
+    if (prefs.getString('token') != null) {
       Get.offNamed(AppRoute.therapistHome);
     } else {
       Get.offNamed(AppRoute.therapistLogin);
     }
   }
 
-  void login () async {
-    Therapist therapist = Therapist(email:email.value.text, password:password.value.text);
-    String request_body = therapist.toJson();
+  void login() async {
+    Therapist therapist = Therapist(email: email.value.text, password: password.value.text);
+    String requestBody = therapist.toJson();
 
-    var post = await DioClient().getInstance().post("/loginTherapist", data: request_body);
+    try {
+      var post = await DioClient().getInstance().post("/loginTherapist", data: requestBody);
 
-    if (post.statusCode == 200) {
-      String token = post.data['token'];
-      int therapistId = post.data['therapist']['id'];
+      if (post.statusCode == 200 && post.data['status']) {
+        String token = post.data['token'];
+        int therapistId = post.data['therapist']['id'];
 
-      await prefs.setString('token', token);
-      await prefs.setInt('user_id', therapistId);
+        await prefs.setString('token', token);
+        await prefs.setInt('therapist_id', therapistId);
 
-      showSuccessDialog(
-          Get.context!, "Login Success", "Welcome Back!", () {
-        Get.offNamed(AppRoute.therapistHome);
-      });
-    } else {
-      showSuccessDialog(
-        Get.context!,
-        "Invalid",
-        "Invalid email or password",
-            () {
-        },
-      );
+        showSuccessDialog(
+          Get.context!,
+          "Login Success",
+          "Welcome Back!",
+              () {
+            Get.offNamed(AppRoute.therapistHome);
+          },
+        );
+      } else {
+        showErrorDialog();
+      }
+    } catch (e) {
+      print('Error during login: $e');
+      showErrorDialog();
     }
+  }
+
+  void showErrorDialog() {
+    showSuccessDialog(
+      Get.context!,
+      "Invalid",
+      "Invalid email or password",
+          () {},
+    );
   }
 }

@@ -1,22 +1,20 @@
+// search.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:therapease/Controllers/TherapistRequestController.dart';
+import '../Controllers/SearchingController.dart';
+import '../Models/Therapist.dart';
 import '../Routes/AppRoute.dart';
-import '../Controllers/ProfileController.dart';
-import 'package:therapease/Views/widget/profile_card.dart';
-import 'package:therapease/Views/widget/base_app_bar.dart';
 
 class TherapistRequest extends GetView<TherapistRequestController> {
-  const TherapistRequest({Key? key});
+  const TherapistRequest({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
-          "Profile",
+          "Requests",
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.redAccent,
@@ -26,71 +24,19 @@ class TherapistRequest extends GetView<TherapistRequestController> {
             icon: Icon(Icons.notifications),
             color: Colors.white,
             onPressed: () {
-              Get.toNamed(AppRoute.notification);
+              Get.toNamed(AppRoute.therapistNotification);
             },
           ),
         ],
       ),
-      body: ListView(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 40),
-                Center(
-                  child: Text(
-                    "Your Account Info",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 10),
-                Center(
-                  child: controller.therapist != null
-                      ? Text(
-                    "Full Name: ${controller.therapist!.name ?? 'N/A'}\nEmail: ${controller.therapist!.email ?? 'N/A'}\nPhone Number: ${controller.therapist!.phone ?? 'N/A'}",
-                    style: TextStyle(fontSize: 16),
-                  )
-                      : CircularProgressIndicator(), // Example of showing loading indicator
-                ),
+          //Expanded(
+           // child: Obx(() {
 
-
-                SizedBox(height: 80),
-                ProfileCard(
-                  svgSrc: "profile.svg",
-                  title: "Profile Information",
-                  subTitle: "Change your account information",
-                  press: () {
-                    Get.offNamed(AppRoute.account);
-                  },
-                ),
-                ProfileCard(
-                  svgSrc: "lock.svg",
-                  title: "Change Password",
-                  subTitle: "Change your password",
-                  press: () {
-                    Get.offNamed(AppRoute.changePassword);
-                  },
-                ),
-                ProfileCard(
-                  svgSrc: "card.svg",
-                  title: "Payment Methods",
-                  subTitle: "Add your credit & debit cards",
-                  press: () {},
-                ),
-                ProfileCard(
-                  svgSrc: "afb.svg",
-                  title: "Add Social Account",
-                  subTitle: "Add Facebook, Twitter etc ",
-                  press: () {},
-                ),
-              ],
-            ),
-          ),
+           // }),
+          //),
         ],
       ),
       drawer: Drawer(
@@ -107,39 +53,42 @@ class TherapistRequest extends GetView<TherapistRequestController> {
               ),
             ),
             ListTile(
-              leading: Icon(Icons.home),
-              title: Text("Home"),
+              leading: Icon(Icons.book_sharp),
+              title: Text("Bookings"),
               onTap: () {
-                Get.toNamed(AppRoute.home);
+                // Navigate to the Home screen
+                Get.toNamed(AppRoute.therapistHome);
               },
             ),
             ListTile(
-              leading: Icon(Icons.search),
-              title: Text("Search"),
+              leading: Icon(Icons.assignment),
+              title: Text("Requests"),
               onTap: () {
-                Get.toNamed(AppRoute.search);
+                // Navigate to the Search screen
+                Get.toNamed(AppRoute.therapistRequest);
               },
             ),
             ListTile(
               leading: Icon(Icons.notifications),
               title: Text("Notifications"),
               onTap: () {
-                Get.toNamed(AppRoute.notification);
+                // Navigate to the Notifications screen
+                Get.toNamed(AppRoute.therapistNotification);
               },
             ),
             ListTile(
               leading: Icon(Icons.account_circle),
               title: Text("Profile"),
               onTap: () {
-                Get.toNamed(AppRoute.profile);
+                Get.toNamed(AppRoute.therapistProfile);
               },
             ),
-            Divider(),
+            Divider(), // Add a divider
             ListTile(
               leading: Icon(Icons.logout),
               title: Text("Logout"),
               onTap: () {
-                // controller.logout();
+                controller.logout();
               },
             ),
           ],
@@ -149,17 +98,17 @@ class TherapistRequest extends GetView<TherapistRequestController> {
         backgroundColor: Colors.redAccent,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.white54,
-        currentIndex: 2,
+        currentIndex: 1, // Change this according to the selected tab
         onTap: (index) {
           switch (index) {
             case 0:
-              Get.toNamed(AppRoute.home);
+              Get.toNamed(AppRoute.therapistHome);
               break;
             case 1:
-              Get.toNamed(AppRoute.search);
+              Get.toNamed(AppRoute.therapistRequest);
               break;
             case 2:
-              Get.toNamed(AppRoute.profile);
+              Get.toNamed(AppRoute.therapistProfile);
               break;
             default:
               break;
@@ -167,12 +116,12 @@ class TherapistRequest extends GetView<TherapistRequestController> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Home",
+            icon: Icon(Icons.book_sharp),
+            label: "Bookings",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: "Search",
+            icon: Icon(Icons.assignment),
+            label: "Requests",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle),

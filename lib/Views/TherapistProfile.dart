@@ -65,7 +65,7 @@ class TherapistProfile extends GetView<TherapistProfileController> {
                   title: "Settings",
                   subTitle: "Change profile information",
                   press: () {
-                    AppRoute.therapistSettings;
+                    Get.offNamed(AppRoute.therapistSettings);
                   },
                 ),
               ],
@@ -92,7 +92,7 @@ class TherapistProfile extends GetView<TherapistProfileController> {
               title: Text("Bookings"),
               onTap: () {
                 // Navigate to the Home screen
-                Get.toNamed('/therapistHome');
+                Get.toNamed(AppRoute.therapistHome);
               },
             ),
             ListTile(
@@ -100,7 +100,7 @@ class TherapistProfile extends GetView<TherapistProfileController> {
               title: Text("Requests"),
               onTap: () {
                 // Navigate to the Search screen
-                Get.toNamed(AppRoute.search);
+                Get.toNamed(AppRoute.therapistRequest);
               },
             ),
             ListTile(
@@ -134,14 +134,14 @@ class TherapistProfile extends GetView<TherapistProfileController> {
         backgroundColor: Colors.redAccent,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.white54,
-        currentIndex: 0, // Change this according to the selected tab
+        currentIndex: 2, // Change this according to the selected tab
         onTap: (index) {
           switch (index) {
             case 0:
               Get.toNamed(AppRoute.therapistHome);
               break;
             case 1:
-            // Get.toNamed(AppRoute.search);
+              Get.toNamed(AppRoute.therapistRequest);
               break;
             case 2:
               Get.toNamed(AppRoute.profile);

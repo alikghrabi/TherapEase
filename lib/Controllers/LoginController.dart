@@ -13,8 +13,12 @@ class LoginController extends GetxController {
   late SharedPreferences prefs;
 
   @override
-  void onInit() async {
+  void onInit() {
     super.onInit();
+    initializePreferences();
+  }
+
+  Future<void> initializePreferences() async {
     prefs = await SharedPreferences.getInstance();
 
     if (prefs.getString('token') != null) {

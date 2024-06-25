@@ -74,7 +74,7 @@ class TherapistHome extends GetView<TherapistHomeController> {
               title: Text("Requests"),
               onTap: () {
                 // Navigate to the Search screen
-                Get.toNamed(AppRoute.search);
+                Get.toNamed(AppRoute.therapistRequest);
               },
             ),
             ListTile(
@@ -115,7 +115,7 @@ class TherapistHome extends GetView<TherapistHomeController> {
               Get.toNamed(AppRoute.therapistHome);
               break;
             case 1:
-              // Get.toNamed(AppRoute.search);
+              Get.toNamed(AppRoute.therapistRequest);
               break;
             case 2:
                Get.toNamed(AppRoute.therapistProfile);

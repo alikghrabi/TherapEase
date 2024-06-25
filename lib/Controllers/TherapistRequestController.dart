@@ -17,11 +17,11 @@ class TherapistRequestController extends GetxController {
     super.onInit();
     prefs = await SharedPreferences.getInstance();
 
-    if (prefs.getString('token') != null && prefs.getInt('therapist_id') != null) {
+    if (prefs.getString('token') != null) {
       await fetchTherapistRequests(prefs.getInt('therapist_id'));
     } else {
       // Redirect to login only if the user is not authenticated
-      Get.offNamed(AppRoute.login);
+      Get.offNamed(AppRoute.therapistLogin);
     }
   }
 

@@ -23,7 +23,6 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: AppRoute.login,
       getPages: AppPage.pages,
-      home: const Login(),
     );
   }
 }
