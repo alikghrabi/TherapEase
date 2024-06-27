@@ -27,6 +27,7 @@ import 'package:therapease/Views/AccountInfo.dart';
 import 'package:therapease/Views/Notification.dart';
 import 'package:therapease/Views/TherapistAccount.dart';
 
+import '../Bindings/DetailsTherapistBinding.dart';
 import '../Bindings/TherapistAccountBinding.dart';
 import '../Bindings/TherapistChangePasswordBinding.dart';
 import '../Bindings/TherapistHomeBinding.dart';
@@ -36,6 +37,7 @@ import '../Bindings/TherapistProfileBinding.dart';
 import '../Bindings/TherapistRegisterBinding.dart';
 import '../Bindings/TherapistRequestBinding.dart';
 import '../Bindings/TherapistSettingsBinding.dart';
+import '../Views/DetailsTherapist.dart';
 import '../Views/TherapistChangePassword.dart';
 import '../Views/TherapistHome.dart';
 import '../Views/TherapistLogin.dart';
@@ -72,6 +74,10 @@ class AppPage {
     GetPage(name: AppRoute.therapistSettings, page: ()=>const TherapistSettings(), binding: TherapistSettingsBinding()),
     GetPage(name: AppRoute.therapistAccount, page: ()=>const TherapistAccountInfo(), binding: TherapistAccountBinding()),
     GetPage(name: AppRoute.therapistChangePassword, page: ()=>const TherapistChangePassword(), binding: TherapistChangePasswordBinding()),
+    GetPage(name: AppRoute.detailsTherapist, page: ()=>const DetailsTherapist(), binding: DetailsTherapistBinding()),
+   // GetPage(name: AppRoute.forgotPassword, page: ()=>const ForgotPassword(), binding: ForgotPasswordBinding()),
+
+
 
 
 

@@ -1,4 +1,3 @@
-// search.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../Controllers/SearchingController.dart';
@@ -64,7 +63,7 @@ class Search extends GetView<SearchingController> {
                       title: Text(therapist.name!),
                       subtitle: Text(therapist.email!),
                       onTap: () {
-                        // Handle item tap
+                        Get.toNamed(AppRoute.detailsTherapist, arguments: therapist);
                       },
                     );
                   },
@@ -91,7 +90,6 @@ class Search extends GetView<SearchingController> {
               leading: Icon(Icons.home),
               title: Text("Home"),
               onTap: () {
-                // Navigate to the Home screen
                 Get.toNamed(AppRoute.home);
               },
             ),
@@ -99,7 +97,6 @@ class Search extends GetView<SearchingController> {
               leading: Icon(Icons.search),
               title: Text("Search"),
               onTap: () {
-                // Navigate to the Search screen
                 Get.toNamed(AppRoute.search);
               },
             ),
@@ -107,7 +104,6 @@ class Search extends GetView<SearchingController> {
               leading: Icon(Icons.notifications),
               title: Text("Notifications"),
               onTap: () {
-                // Navigate to the Notifications screen
                 Get.toNamed(AppRoute.notification);
               },
             ),
