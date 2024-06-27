@@ -35,14 +35,7 @@ class Home extends GetView<HomeController> {
               "Welcome to Therapease",
               style: TextStyle(fontSize: 20),
             ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Add functionality here
-              },
-              child: Text("Button"),
-            ),
-            // Add more fields or widgets as needed
+           // Add more fields or widgets as needed
           ],
         ),
       ),

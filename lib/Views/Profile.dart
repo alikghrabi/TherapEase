@@ -79,13 +79,17 @@ class Profile extends GetView<ProfileController> {
                    svgSrc: "card.svg",
                   title: "Payment Methods",
                   subTitle: "Add your credit & debit cards",
-                  press: () {},
+                  press: () {
+                    Get.offNamed(AppRoute.paymentMethods);
+                  },
                 ),
                 ProfileCard(
                   svgSrc: "afb.svg",
                   title: "Add Social Account",
                   subTitle: "Add Facebook, Twitter etc ",
-                  press: () {},
+                  press: () {
+                    Get.offNamed(AppRoute.socialAccounts);
+                  },
                 ),
               ],
             ),

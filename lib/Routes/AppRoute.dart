@@ -21,6 +21,10 @@ class AppRoute {
   static const String therapistChangePassword = "/therapistChangePassword";
   static const String detailsTherapist = "/detailsTherapist";
   static const String forgotPassword = "/forgotPassword";
+  static const String paymentMethods = "/paymentMethods";
+  static const String socialAccounts = "/socialAccounts";
+
+
 
 
 
